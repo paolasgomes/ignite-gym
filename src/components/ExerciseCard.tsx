@@ -4,9 +4,9 @@ import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 interface ButtonProps extends TouchableOpacityProps {}
 
-export function ExerciseCard() {
+export function ExerciseCard({ ...rest }: ButtonProps) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity {...rest}>
       <HStack bg="gray.500" alignItems="center" p={2} pr={4} rounded="md" mb={3}>
         <Image
           source={{
@@ -17,7 +17,7 @@ export function ExerciseCard() {
           h={16}
           rounded="md"
           mr={4}
-          resizeMode="center"
+          resizeMode="cover"
         />
 
         <VStack flex={1}>
