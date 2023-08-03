@@ -4,13 +4,18 @@ import LogoSvg from "@assets/logo.svg"; //utilizando a biblioteca react-transfor
 import BackgroundImg from "@assets/background.png";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
+import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 
 export function SignUp() {
+  const navigation = useNavigation<AuthNavigatorRoutesProps>();
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
-      <VStack flex={1} bg="gray.700" px={10}>
+      <VStack flex={1} px={10}>
         <Image
-          source={BackgroundImg}
+          source={BackgroundImg} //Entende que é flexível
+          defaultSource={BackgroundImg} //entende que esse é o default da imagem e carrega mais rápido
           alt="Pessoas treinando"
           resizeMode="contain"
           position="absolute"
@@ -37,7 +42,12 @@ export function SignUp() {
           <Button title="Criar e acessar" />
         </Center>
 
-        <Button title="Voltar para o login" variant="outline" mt={24} />
+        <Button
+          title="Voltar para o login"
+          variant="outline"
+          mt={24}
+          onPress={() => navigation.navigate("signIn")}
+        />
       </VStack>
     </ScrollView>
   );
