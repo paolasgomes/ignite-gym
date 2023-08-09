@@ -1,4 +1,4 @@
-import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
+import { VStack, Image, Text, Center, Heading, ScrollView, useToast } from "native-base";
 
 import LogoSvg from "@assets/logo.svg"; //utilizando a biblioteca react-transformer-svg para utilizar svg
 import BackgroundImg from "@assets/background.png";
@@ -8,7 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
 import * as yup from "yup";
+import { api } from "@services/api";
+import { Alert } from "react-native";
+import { AppError } from "@utils/AppError";
 
 interface FormDataProps {
   name: string;
@@ -32,6 +36,7 @@ const signUpSchema = yup.object({
 
 export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
+  const toast = useToast();
 
   const {
     control,
@@ -42,11 +47,25 @@ export function SignUp() {
     reValidateMode: "onSubmit",
   });
 
-  function handleSignUp(data: FormDataProps) {
-    navigation.navigate("signIn");
+  async function handleSignUp({ name, password, email }: FormDataProps) {
+    try {
+      const response = await api.post("/users", { name, password, email });
+      console.log("response => ", response.data);
+    } catch (error) {
+      const isAppError = error instanceof AppError; //pegando a instância criada do erro tratado
 
-    // navigation.navigate("signIn");
+      const title = isAppError
+        ? error.message
+        : "Não foi possível criar a conta. Tente novamente mais tarde";
+
+      toast.show({
+        title,
+        placement: "top",
+        bgColor: "red.500",
+      });
+    }
   }
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
       <VStack flex={1} px={10}>
