@@ -15,14 +15,16 @@ import { Platform } from "react-native";
 
 type AppRoutes = {
   home: undefined;
-  history: undefined;
-  profile: undefined;
   exercise: undefined;
+  profile: undefined;
+  history: undefined;
 };
 
-export type AppRoutesNavigatorProps = BottomTabNavigationProp<AppRoutes>; // utilizar quando for usar uma rota
+export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
 
-const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>(); //utilizar esse tipo quando for criar uma rota
+const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
+
+//utilizar esse tipo quando for criar uma rota
 
 export function AppRoutes() {
   const { sizes, colors } = useTheme();

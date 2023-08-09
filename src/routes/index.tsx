@@ -13,6 +13,7 @@ export function Routes() {
     <Box bg="gray.700" flex={1}>
       <NavigationContainer theme={theme}>
         <AppRoutes />
+        {/* <AuthRoutes /> */}
       </NavigationContainer>
     </Box> //Para não aparecer fundo branco quando trocar tela por causa do delay
   );

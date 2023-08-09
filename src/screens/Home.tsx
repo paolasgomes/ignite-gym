@@ -4,10 +4,10 @@ import { HomeHeader } from "@components/HomeHeader";
 import { Center, FlatList, HStack, Heading, Text, VStack } from "native-base";
 import { ExerciseCard } from "@components/ExerciseCard";
 import { useNavigation } from "@react-navigation/native";
-import { AppRoutesNavigatorProps } from "@routes/app.routes";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 
 export function Home() {
-  const navigation = useNavigation<AppRoutesNavigatorProps>();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   const [groups, setGroups] = useState(["Costa", "Triceps", "Biceps", "Ombro"]);
   const [groupSelected, setGroupSelected] = useState("Costa");

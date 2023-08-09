@@ -6,14 +6,14 @@ import {
 import { SignIn } from "@screens/SignIn";
 import { SignUp } from "@screens/SignUp";
 
-type AuthProps = {
-  signIn: undefined; //undefined pois não tenho parametro de rota
-  signUp: undefined; //undefined pois não tenho parametro de rota
+type AuthRoutes = {
+  signIn: undefined;
+  signUp: undefined;
 };
 
-export type AuthNavigatorRoutesProps = NativeStackNavigationProp<AuthProps>;
+export type AuthNavigatorRoutesProps = NativeStackNavigationProp<AuthRoutes>;
 
-const { Navigator, Screen } = createNativeStackNavigator<AuthProps>();
+const { Navigator, Screen } = createNativeStackNavigator<AuthRoutes>();
 
 export function AuthRoutes() {
   return (

@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { AppRoutesNavigatorProps } from "@routes/app.routes";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import {
   Box,
   Center,
@@ -20,7 +20,7 @@ import RepetitionsSvg from "@assets/repetitions.svg";
 import { Button } from "@components/Button";
 
 export function Exercise() {
-  const navigation = useNavigation<AppRoutesNavigatorProps>();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   return (
     <VStack flex={1}>

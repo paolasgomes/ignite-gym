@@ -6,10 +6,47 @@ import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { useNavigation } from "@react-navigation/native";
 import { AuthNavigatorRoutesProps } from "@routes/auth.routes";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+interface FormDataProps {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+const signUpSchema = yup.object({
+  name: yup.string().required("Informe seu nome"),
+  email: yup.string().required("Informe seu e-mail").email("E-mail inválido"),
+  password: yup
+    .string()
+    .required("Informe sua senha")
+    .min(6, "Sua senha deve ter pelo menos 6 digítos"),
+  confirmPassword: yup
+    .string()
+    .required("Confirme a senha.")
+    .oneOf([yup.ref("password")], "A confirmação da senha não confere"),
+});
 
 export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormDataProps>({
+    resolver: yupResolver(signUpSchema),
+    reValidateMode: "onSubmit",
+  });
+
+  function handleSignUp(data: FormDataProps) {
+    navigation.navigate("signIn");
+
+    // navigation.navigate("signIn");
+  }
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
       <VStack flex={1} px={10}>
@@ -34,21 +71,72 @@ export function SignUp() {
             Crie sua conta
           </Heading>
 
-          <Input placeholder="Nome" />
-          <Input placeholder="E-mail" keyboardType="email-address" autoCapitalize="none" />
-          <Input placeholder="Senha" secureTextEntry />
-          <Input placeholder="Confirme sua senha" secureTextEntry />
+          <Controller
+            control={control}
+            name="name"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                placeholder="Nome"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors?.name?.message}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="email"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                placeholder="E-mail"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors?.email?.message}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                placeholder="Senha"
+                secureTextEntry
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors?.password?.message}
+              />
+            )}
+          />
+          <Controller
+            control={control}
+            name="confirmPassword"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                placeholder="Confirme sua senha"
+                secureTextEntry
+                onChangeText={onChange}
+                value={value}
+                onSubmitEditing={handleSubmit(handleSignUp)}
+                returnKeyType="send"
+                errorMessage={errors?.confirmPassword?.message}
+              />
+            )}
+          />
 
-          <Button title="Criar e acessar" />
+          <Button title="Criar e acessar" onPress={handleSubmit(handleSignUp)} />
         </Center>
 
         <Button
           title="Voltar para o login"
           variant="outline"
-          mt={24}
+          mt={12}
           onPress={() => navigation.navigate("signIn")}
         />
       </VStack>
     </ScrollView>
   );
 }
+//Posso Enviar os dados do formulário pelo confirmar senha ou pelo botão
