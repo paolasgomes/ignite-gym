@@ -13,6 +13,7 @@ import * as yup from "yup";
 import { api } from "@services/api";
 import { Alert } from "react-native";
 import { AppError } from "@utils/AppError";
+import { useAuth } from "@hooks/useAuth";
 
 interface FormDataProps {
   name: string;
@@ -37,11 +38,12 @@ const signUpSchema = yup.object({
 export function SignUp() {
   const navigation = useNavigation<AuthNavigatorRoutesProps>();
   const toast = useToast();
+  const { signIn } = useAuth();
 
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<FormDataProps>({
     resolver: yupResolver(signUpSchema),
     reValidateMode: "onSubmit",
@@ -49,8 +51,8 @@ export function SignUp() {
 
   async function handleSignUp({ name, password, email }: FormDataProps) {
     try {
-      const response = await api.post("/users", { name, password, email });
-      console.log("response => ", response.data);
+      await api.post("/users", { name, password, email });
+      await signIn(email, password); //Cria conta e já redireciona para dentro do app
     } catch (error) {
       const isAppError = error instanceof AppError; //pegando a instância criada do erro tratado
 
@@ -145,7 +147,11 @@ export function SignUp() {
             )}
           />
 
-          <Button title="Criar e acessar" onPress={handleSubmit(handleSignUp)} />
+          <Button
+            title="Criar e acessar"
+            onPress={handleSubmit(handleSignUp)}
+            isLoading={isSubmitting}
+          />
         </Center>
 
         <Button
