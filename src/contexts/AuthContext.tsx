@@ -11,6 +11,7 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 export interface AuthContextDataProps {
   user: UserDTO;
   signIn: (email: string, password: string) => Promise<void>;
+  updateUserProfile: (updateUser: UserDTO) => Promise<void>;
   signOut: () => Promise<void>;
   isLoadingUserStorageData: boolean;
 }
@@ -30,12 +31,12 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     setUser(user); //e salva o user no estado que está sendo compartilhado
   }
 
-  async function storageSaveUserAndToken(user: UserDTO, token: string) {
+  async function storageSaveUserAndToken(user: UserDTO, token: string, refresh_token: string) {
     try {
       setIsLoadingUserStorageData(true);
 
       await storageUserSave(user); //seta o usuário no storage
-      await storageTokenSave(token); //seta o token
+      await storageTokenSave({ token, refresh_token }); //seta o token
     } catch (error) {
       throw error;
     } finally {
@@ -47,8 +48,8 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     try {
       const { data } = await api.post("/sessions", { email, password }); //Consulto se existe um usuário com essas credenciais
 
-      if (data.user && data.token) {
-        storageSaveUserAndToken(data.user, data.token);
+      if (data.user && data.token && data.refresh_token) {
+        storageSaveUserAndToken(data.user, data.token, data.refresh_token);
         updateUserAndToken(data.user, data.token);
       } //se tiver um usuário com essas credenciais e com um token, eu envio para a função
     } catch (error) {
@@ -72,7 +73,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   async function loadUserData() {
     try {
       const userLogged = await storageUserGet();
-      const token = await storageTokenGet();
+      const { token } = await storageTokenGet();
 
       if (userLogged && token) {
         updateUserAndToken(userLogged, token);
@@ -84,12 +85,31 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     }
   }
 
+  async function updateUserProfile(userUpdated: UserDTO) {
+    try {
+      setUser(userUpdated);
+      await storageUserSave(userUpdated);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   useEffect(() => {
     loadUserData();
   }, []); //toda vez que recarrega a aplicação passa por aqui e verifica se tem algo no storage
 
+  useEffect(() => {
+    const subscribe = api.registerInterceptTokenManager(signOut);
+
+    return () => {
+      subscribe();
+    };
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut, isLoadingUserStorageData }}>
+    <AuthContext.Provider
+      value={{ user, signIn, signOut, isLoadingUserStorageData, updateUserProfile }}
+    >
       {children}
     </AuthContext.Provider>
   );
