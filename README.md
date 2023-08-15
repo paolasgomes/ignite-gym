@@ -34,6 +34,4 @@ The Ignite Gym app was developed with cutting-edge technologies to provide a sea
 
 ## Developed with:
 
-- <img src="./public/assets/reactnative-logo.png" alt="React Native" width="256">
-- <img src="./public/assets/typescript-logo.png" alt="TypeScript" width="256">
-- <img src="./public/assets/react-hook-form.png" alt="React Hook Form" width="256">
+- <img src="./public/assets/reactnative-logo.png" alt="React Native" width="40"> <img src="./public/assets/typescript-logo.png" alt="TypeScript" width="40"> <img src="./public/assets/react-hook-form.png" alt="React Hook Form" width="40">
