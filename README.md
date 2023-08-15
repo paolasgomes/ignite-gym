@@ -1,37 +1,37 @@
-## Description
+## Descrição
 
-Ignite Gym is a workout application developed during Rocketseat's Next Level Week 3. This app empowers users to create and track their exercises, connect with like-minded fitness enthusiasts, monitor their progress over time, and find motivation and support from fellow users who share their fitness interests.
+O Ignite Gym é um aplicativo de treino desenvolvido durante a Semana Next Level 3 da Rocketseat. Este aplicativo capacita os usuários a criar e acompanhar seus exercícios, se conectar com entusiastas fitness semelhantes, monitorar seu progresso ao longo do tempo e encontrar motivação e apoio de outros usuários que compartilham seus interesses fitness.
 
-![Ignite Gym Preview](./public/assets/ignitegym-preview.png)
+![Ignite Gym Prévia](./public/assets/ignitegym-preview.png)
 
-## Features
+## Recursos
 
-Ignite Gym offers a comprehensive set of features designed to enhance your fitness journey:
+O Ignite Gym oferece um conjunto abrangente de recursos projetados para melhorar a sua jornada de fitness:
 
-- **Create and Track Exercises:** Users can easily create and track their exercises, helping them stay consistent and achieve their fitness goals.
+- **Criar e Acompanhar exercícios:** Os usuários podem facilmente criar e acompanhar seus exercícios, ajudando-os a manter a consistência e alcançar seus objetivos de fitness.
 
-- **Connect with Other Users:** Ignite Gym enables users to find and connect with others who share their passion for fitness, fostering a supportive community.
+- **Conectar-se com Outros Usuários:** O Ignite Gym permite que os usuários encontrem e se conectem com outras pessoas que compartilham sua paixão por fitness, promovendo uma comunidade de apoio.
 
-- **Progress Monitoring:** The app allows users to visually track their progress over time, helping them see their improvements and stay motivated.
+- **Monitorarmento de Progresso:** O aplicativo permite que os usuários acompanhem visualmente seu progresso ao longo do tempo, ajudando-os a ver suas melhorias e permanecer motivados.
 
-- **Motivation and Support:** Users can receive motivation and support from the community, making the fitness journey more enjoyable and successful.
+- **Motivação e Apoio:** Os usuários podem receber motivação e apoio da comunidade, tornando a jornada fitness mais agradável e bem-sucedida.
 
-- **Diverse Workout Options:** Ignite Gym provides access to a variety of exercises and workout plans, catering to different fitness preferences.
+- **Diversas opções de treino:** O Ignite Gym oferece acesso a uma variedade de exercícios e planos de treino, atendendo a diferentes preferências de fitness.
 
-## Technologies Used
+## Tecnologias utilizadas
 
-The Ignite Gym app was developed with cutting-edge technologies to provide a seamless user experience:
+O aplicativo Ignite Gym foi desenvolvido com tecnologias de ponta para oferecer uma experiência de usuário perfeita:
 
-- **Form Validation:** The app implements robust form validations using React Hook Form in conjunction with the Yup library, ensuring accurate data entry.
+- **Validação de formulário:** O aplicativo implementa validações robustas de formulário usando o React Hook Form em conjunto com a biblioteca Yup, garantindo uma entrada de dados precisa.
 
-- **Profile Photo Upload:** Users can upload their profile photos, personalizing their experience within the app.
+- **Upload de fotos:** Os usuários podem fazer upload de suas fotos de perfil, personalizando sua experiência dentro do aplicativo.
 
-- **User Profile Management:** Ignite Gym offers the flexibility to change usernames and passwords, allowing users to customize their profiles as needed.
+- **Gerenciamento de perfil do usuário:** O Ignite Gym oferece a flexibilidade de alterar nomes de usuário e senhas, permitindo que os usuários personalizem seus perfis conforme necessário.
 
-- **Token-Based Authentication:** The app employs token-based authentication for secure access, ensuring user data remains private.
+- **Autenticação Baseada em Token:** O aplicativo utiliza autenticação baseada em token para acesso seguro, garantindo que os dados do usuário permaneçam privados.
 
-- **Backend Service:** The app relies on a backend service designed specifically for Ignite Gym. This backend service is hosted on a local server, providing seamless functionality.
+- **Serviço Backend:** O aplicativo depende de um serviço backend projetado especificamente para o Ignite Gym. Esse serviço backend é hospedado em um servidor local, proporcionando funcionalidade sem interrupções.
 
-## Developed with:
+## Desenvolvido com:
 
-- <img src="./public/assets/reactnative-logo.png" alt="React Native" width="40"> <img src="./public/assets/typescript-logo.png" alt="TypeScript" width="40"> <img src="./public/assets/react-hook-form.png" alt="React Hook Form" width="40">
+<img src="./public/assets/reactnative-logo.png" alt="React Native" width="40"> <img src="./public/assets/typescript-logo.png" alt="TypeScript" width="40"> <img src="./public/assets/react-hook-form.png" alt="React Hook Form" width="40">
