@@ -1,8 +1,8 @@
-"# Ignite Gym App - Readme
-
 ## Description
 
 Ignite Gym is a workout application developed during Rocketseat's Next Level Week 3. This app empowers users to create and track their exercises, connect with like-minded fitness enthusiasts, monitor their progress over time, and find motivation and support from fellow users who share their fitness interests.
+
+![Ignite Gym Preview](./public/assets/ignitegym-preview.png)
 
 ## Features
 
@@ -31,3 +31,9 @@ The Ignite Gym app was developed with cutting-edge technologies to provide a sea
 - **Token-Based Authentication:** The app employs token-based authentication for secure access, ensuring user data remains private.
 
 - **Backend Service:** The app relies on a backend service designed specifically for Ignite Gym. This backend service is hosted on a local server, providing seamless functionality.
+
+## Developed with:
+
+- ![React Native](./public/assets/reactnative-logo.png)
+- ![TypeScript](./public/assets/typescript-logo.png)
+- ![React Hook Form](./public/assets/react-hook-form.png)
