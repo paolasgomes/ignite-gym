@@ -1,5 +1,3 @@
-"# Ignite Gym App - Readme
-
 ## Description
 
 Ignite Gym is a workout application developed during Rocketseat's Next Level Week 3. This app empowers users to create and track their exercises, connect with like-minded fitness enthusiasts, monitor their progress over time, and find motivation and support from fellow users who share their fitness interests.
